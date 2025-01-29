@@ -50,15 +50,15 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **HTML pages** - I did not complete this part of the deliverable.
-- [ ] **Proper HTML element usage** - I did not complete this part of the deliverable.
-- [ ] **Links** - I did not complete this part of the deliverable.
-- [ ] **Text** - I did not complete this part of the deliverable.
-- [ ] **3rd party API placeholder** - I did not complete this part of the deliverable.
-- [ ] **Images** - I did not complete this part of the deliverable.
-- [ ] **Login placeholder** - I did not complete this part of the deliverable.
-- [ ] **DB data placeholder** - I did not complete this part of the deliverable.
-- [ ] **WebSocket placeholder** - I did not complete this part of the deliverable.
+- [x] **HTML pages** - Implemented 4 pages: home, login, play, and leaderboard.
+- [x] **Proper HTML element usage** - I used head, body, header, main, footer, etc elements.
+- [x] **Links** - Each page links to all other pages.
+- [x] **Text** - Each page has a title and a paragraph.
+- [x] **3rd party API placeholder** - Added random quotes in the footer of all pages.
+- [x] **Images** - The home page has an image of a stopwatch.
+- [x] **Login placeholder** - There is a /login.html page.
+- [x] **DB data placeholder** - The leaderboard page will use the database to generate the leaderboard.
+- [x] **WebSocket placeholder** - The play page has a notification placeholder, and the leaderboard will also be updated realtime.
 
 ## 🚀 CSS deliverable
 
