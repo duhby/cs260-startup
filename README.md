@@ -56,7 +56,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] **Text** - Each page has a title and a paragraph.
 - [x] **3rd party API placeholder** - Added random quotes in the footer of all pages.
 - [x] **Images** - The home page has an image of a stopwatch.
-- [x] **Login placeholder** - There is a /login.html page.
+- [x] **Login placeholder** - There is a /login.html page, and each page shows the player name in the header.
 - [x] **DB data placeholder** - The leaderboard page will use the database to generate the leaderboard.
 - [x] **WebSocket placeholder** - The play page has a notification placeholder, and the leaderboard will also be updated realtime.
 
