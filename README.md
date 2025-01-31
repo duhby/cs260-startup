@@ -14,8 +14,7 @@ A game website with leaderboards and realtime updates.
 
 ### Elevator pitch
 
-A reaction time game with a leaderboard that gives users notifications when players get a new high score.
-(Might switch to minesweeper or hashi if I have extra time.)
+A realtime arrow clicking game with a global leaderboard that has server side verification.
 
 ### Design
 
@@ -38,7 +37,7 @@ I am going to use the required technologies in the following ways.
   - Logic for connecting to the database and verifying scores
   - 3rd party: [Quote API](https://quotes.rest/) for displaying random quotes at the bottom of the page (supports custom quotes)
 - **DB/Login** - Storing users and score information for leaderboards to be generated
-- **WebSocket** - Real time leaderboard updates
+- **WebSocket** - Gameplay and leaderboard updates
 
 ## 🚀 AWS deliverable
 
@@ -55,10 +54,10 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] **Links** - Each page links to all other pages.
 - [x] **Text** - Each page has a title and a paragraph.
 - [x] **3rd party API placeholder** - Added random quotes in the footer of all pages.
-- [x] **Images** - The home page has an image of a stopwatch.
+- [x] **Images** - The home page has an image of arrow keys.
 - [x] **Login placeholder** - There is a /login.html page, and each page shows the player name in the header.
 - [x] **DB data placeholder** - The leaderboard page will use the database to generate the leaderboard.
-- [x] **WebSocket placeholder** - The play page has a notification placeholder, and the leaderboard will also be updated realtime.
+- [x] **WebSocket placeholder** - The play page has a placeholder for the websocket connection (game), and the leaderboard will also be updated realtime.
 
 ## 🚀 CSS deliverable
 
