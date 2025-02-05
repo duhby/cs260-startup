@@ -5,52 +5,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
   </head>
-  <body>
-    <header>
-      <h1>Diabolical Directions</h1>
+  <body
+    class="text-gray-100 bg-gray-900 h-screen flex flex-col justify-between"
+  >
+    <header
+      class="bg-gray-800 flex items-center justify-between p-4 border-b-1"
+    >
+      <h1 class="text-xl font-bold">Diabolical Directions ⬆️⬇️⬅️➡️</h1>
       <nav>
-        <menu>
-          <li><a href="/index.html">Home</a></li>
-          <li><a href="/login.html">Login</a></li>
-          <li><a href="/play.html">Play</a></li>
-          <li><a href="/leaderboard.html">Leaderboard</a></li>
-        </menu>
-        <menu>
-          <li><a href="#">Player Name - Logout</a></li>
+        <menu class="flex space-x-4">
+          <li>
+            <a href="/index.html" class="hover:underline hover:text-purple-400"
+              >Home</a
+            >
+          </li>
+          <li>
+            <a href="/login.html" class="underline hover:text-purple-400"
+              >Login</a
+            >
+          </li>
+          <li>
+            <a href="/play.html" class="hover:underline hover:text-purple-400"
+              >Play</a
+            >
+          </li>
+          <li>
+            <a
+              href="/leaderboard.html"
+              class="hover:underline hover:text-purple-400"
+              >Leaderboard</a
+            >
+          </li>
         </menu>
       </nav>
-      <hr />
+      <div class="flex space-x-1">
+        <p>Player Name -</p>
+        <a href="#" class="underline hover:text-purple-400">Logout</a>
+      </div>
     </header>
 
-    <main>
-      <h1>Login</h1>
-      <p>
-        Login or create an account to share your scores and appear on the
-        leaderboard.
-      </p>
-      <form action="/play.html" method="get">
-        <input
-          type="text"
-          name="username"
-          id="username"
-          placeholder="Username"
-        />
-        <br />
-        <input
-          type="password"
-          name="password"
-          id="password"
-          placeholder="Password"
-        />
-        <br />
-        <input type="submit" value="Login" />
-      </form>
-      <hr />
+    <main class="flex flex-col items-center text-center text-xl">
+      <div class="max-w-2xl">
+        <p>
+          Login or create an account to share your scores and appear on the
+          leaderboard.
+        </p>
+        <form action="/play.html" method="get">
+          <input
+            type="text"
+            name="username"
+            id="username"
+            placeholder="Username"
+          />
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Password"
+          />
+          <input type="submit" value="Login" />
+        </form>
+      </div>
     </main>
 
-    <footer>
-      <br />
-
+    <footer
+      class="bg-gray-800 flex items-center justify-between p-8 border-t-1"
+    >
       <div id="random-quote">
         <div>
           "[With inheritance,] you wanted a banana, but what you got was a
@@ -59,11 +79,13 @@
         <div>- Joe Armstrong</div>
       </div>
 
-      <br />
-
       <div>
         <span>Josh</span>
-        <a href="https://github.com/duhby/cs260-startup">GitHub</a>
+        <a
+          class="underline hover:text-purple-400"
+          href="https://github.com/duhby/cs260-startup"
+          >GitHub</a
+        >
       </div>
     </footer>
   </body>

@@ -5,33 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
   </head>
-  <body>
-    <header>
-      <h1>Diabolical Directions</h1>
+  <body
+    class="text-gray-100 bg-gray-900 h-screen flex flex-col justify-between"
+  >
+    <header
+      class="bg-gray-800 flex items-center justify-between p-4 border-b-1"
+    >
+      <h1 class="text-xl font-bold">Diabolical Directions ⬆️⬇️⬅️➡️</h1>
       <nav>
-        <menu>
-          <li><a href="/index.html">Home</a></li>
-          <li><a href="/login.html">Login</a></li>
-          <li><a href="/play.html">Play</a></li>
-          <li><a href="/leaderboard.html">Leaderboard</a></li>
-        </menu>
-        <menu>
-          <li><a href="#">Player Name - Logout</a></li>
+        <menu class="flex space-x-4">
+          <li>
+            <a href="/index.html" class="hover:underline hover:text-purple-400"
+              >Home</a
+            >
+          </li>
+          <li>
+            <a href="/login.html" class="hover:underline hover:text-purple-400"
+              >Login</a
+            >
+          </li>
+          <li>
+            <a href="/play.html" class="underline hover:text-purple-400"
+              >Play</a
+            >
+          </li>
+          <li>
+            <a
+              href="/leaderboard.html"
+              class="hover:underline hover:text-purple-400"
+              >Leaderboard</a
+            >
+          </li>
         </menu>
       </nav>
-      <hr />
+      <div class="flex space-x-1">
+        <p>Player Name -</p>
+        <a href="#" class="underline hover:text-purple-400">Logout</a>
+      </div>
     </header>
 
-    <main>
-      <h1>Play</h1>
+    <main class="flex flex-col items-center text-center text-xl">
       <p>Press the arrow keys based on the text before the timer runs out.</p>
       <button id="game">Press any arrow key to start!</button>
       <hr />
     </main>
 
-    <footer>
-      <br />
-
+    <footer
+      class="bg-gray-800 flex items-center justify-between p-8 border-t-1"
+    >
       <div id="random-quote">
         <div>
           "I have a first place ribbon in doing nothing... it's the same ribbon
@@ -40,11 +61,13 @@
         <div>- Michael J. Caboose</div>
       </div>
 
-      <br />
-
       <div>
         <span>Josh</span>
-        <a href="https://github.com/duhby/cs260-startup">GitHub</a>
+        <a
+          class="underline hover:text-purple-400"
+          href="https://github.com/duhby/cs260-startup"
+          >GitHub</a
+        >
       </div>
     </footer>
   </body>
