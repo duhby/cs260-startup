@@ -9,7 +9,7 @@
     class="text-gray-100 bg-gray-900 h-screen flex flex-col justify-between"
   >
     <header
-      class="bg-gray-800 flex items-center justify-between p-4 border-b-1"
+      class="bg-gray-800 grid grid-cols-3 justify-items-center p-4 border-b-1"
     >
       <h1 class="text-xl font-bold">Diabolical Directions ⬆️⬇️⬅️➡️</h1>
       <nav>
@@ -46,24 +46,34 @@
 
     <main class="flex flex-col items-center text-center text-xl">
       <div class="max-w-2xl">
-        <p>
-          Login or create an account to share your scores and appear on the
+        <p class="mb-4">
+          Log in or create an account to share your scores and appear on the
           leaderboard.
         </p>
-        <form action="/play.html" method="get">
+        <form
+          class="flex flex-col items-center"
+          action="/play.html"
+          method="get"
+        >
           <input
+            class="border-2 w-sm rounded-sm p-1 mb-2 focus:border-purple-400 focus:outline-none"
             type="text"
             name="username"
             id="username"
             placeholder="Username"
           />
           <input
+            class="border-2 w-sm rounded-sm p-1 mb-2 focus:border-purple-400 focus:outline-none"
             type="password"
             name="password"
             id="password"
             placeholder="Password"
           />
-          <input type="submit" value="Login" />
+          <input
+            class="bg-purple-800 w-sm rounded-sm p-2 hover:cursor-pointer hover:rounded-md hover:bg-gray-800 hover:text-purple-400"
+            type="submit"
+            value="Log in"
+          />
         </form>
       </div>
     </main>
