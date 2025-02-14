@@ -1,85 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Diabolical Directions - Home</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+
+    <title>Simon React</title>
   </head>
-  <body
-    class="text-gray-100 bg-gray-900 h-screen flex flex-col justify-between"
-  >
-    <header
-      class="bg-gray-800 grid grid-cols-3 justify-items-center p-4 border-b-1"
-    >
-      <h1 class="text-xl font-bold">Diabolical Directions ⬆️⬇️⬅️➡️</h1>
-      <nav>
-        <menu class="flex space-x-4">
-          <li>
-            <a href="/index.html" class="underline hover:text-purple-400"
-              >Home</a
-            >
-          </li>
-          <li>
-            <a href="/login.html" class="hover:underline hover:text-purple-400"
-              >Login</a
-            >
-          </li>
-          <li>
-            <a href="/play.html" class="hover:underline hover:text-purple-400"
-              >Play</a
-            >
-          </li>
-          <li>
-            <a
-              href="/leaderboard.html"
-              class="hover:underline hover:text-purple-400"
-              >Leaderboard</a
-            >
-          </li>
-        </menu>
-      </nav>
-      <div class="flex space-x-1">
-        <p>Player Name -</p>
-        <a href="#" class="underline hover:text-purple-400">Logout</a>
-      </div>
-    </header>
-
-    <main class="flex flex-col items-center text-center text-xl">
-      <div class="max-w-2xl">
-        <p class="mb-4">
-          Diabolical Directions is a focus game where the goal is to press the
-          arrow keys quickly and accurately based on the text.
-        </p>
-        <p class="mb-6 font-bold">
-          <a class="underline hover:text-purple-400" href="/login.html">
-            Log in</a
-          >
-          to play!
-        </p>
-        <img
-          class="mx-auto sm:w-1/2 rounded-xl"
-          src="arrows.png"
-          alt="Arrow Keys"
-        />
-      </div>
-    </main>
-
-    <footer
-      class="bg-gray-800 flex items-center justify-between p-8 border-t-1"
-    >
-      <div id="random-quote">
-        <div>"[You] can't spell pacifist without fist."</div>
-        <div>- Sarge</div>
-      </div>
-
-      <div>
-        <span>Josh</span>
-        <a
-          class="underline hover:text-purple-400"
-          href="https://github.com/duhby/cs260-startup"
-          >GitHub</a
-        >
-      </div>
-    </footer>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <script type="module" src="/index.jsx"></script>
   </body>
 </html>
