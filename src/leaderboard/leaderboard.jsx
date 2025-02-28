@@ -7,7 +7,9 @@ export function Leaderboard({ username }) {
   useEffect(() => {
     const res = localStorage.getItem("scores");
     if (res) {
-      setScores(JSON.parse(res));
+      const parsedScores = JSON.parse(res);
+      parsedScores.sort((a, b) => b.score - a.score);
+      setScores(parsedScores);
     }
   }, []);
 
