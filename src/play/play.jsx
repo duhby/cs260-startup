@@ -103,6 +103,7 @@ export function Play({ username }) {
         <div
           className="absolute bottom-0 w-full h-2 rounded-full bg-gray-600"
           style={{
+            // TODO: make the color of the bar fade from green to red
             width: `${timeLeft}%`,
             transition: "width 0.02s linear",
           }}
