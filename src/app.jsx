@@ -83,7 +83,7 @@ function AppContent() {
           </menu>
         </nav>
         <div className="flex space-x-1">
-          <p>{"username" + " -" ? username : ""}</p>
+          <p>{username ? `${username} -` : ""}</p>
           <NavLink
             to={username ? "/" : "/login"}
             className="underline"

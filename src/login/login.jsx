@@ -9,7 +9,6 @@ export function Login() {
   React.useEffect(() => {
     setUsername(localStorage.getItem("username"));
   }, []);
-
   if (username) {
     navigate("/play");
   }
