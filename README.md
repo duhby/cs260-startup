@@ -82,8 +82,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **All functionality implemented or mocked out** - I did not complete this part of the deliverable.
-- [ ] **Hooks** - I did not complete this part of the deliverable.
+- [x] **All functionality implemented or mocked out** - Navbar username, random footer quotes, login/logout, leaderboard, and gameplay are all functional locally with local storage.
+- [x] **Hooks** - There are multiple useState, useEffect, and useRef hooks used throughout the different pages like the /play, /leaderboard, /login, etc.
 
 ## 🚀 Service deliverable
 
