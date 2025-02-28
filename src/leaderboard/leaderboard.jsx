@@ -5,6 +5,7 @@ export function Leaderboard({ username }) {
   const defaultText = "No scores yet. Be the first!";
 
   useEffect(() => {
+    // TODO: only one entry per username
     const res = localStorage.getItem("scores");
     if (res) {
       const parsedScores = JSON.parse(res);
@@ -28,6 +29,7 @@ export function Leaderboard({ username }) {
           <td>{i + 1}</td>
           <td>{score.username}</td>
           <td>{score.score}</td>
+          {/* TODO: make date pretty */}
           <td>{score.date}</td>
         </tr>
       );
