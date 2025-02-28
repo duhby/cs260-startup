@@ -1,6 +1,15 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
-export function Play() {
+export function Play({ username }) {
+  const navigate = useNavigate();
+
+  React.useEffect(() => {
+    if (!username) {
+      navigate("/login");
+    }
+  }, []);
+
   return (
     <main className="flex flex-col items-center text-center">
       <div

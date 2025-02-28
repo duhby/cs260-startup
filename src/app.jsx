@@ -96,9 +96,15 @@ function AppContent() {
 
       <Routes>
         <Route path="/" element={<About />} />
-        <Route path="login" element={<Login />} />
-        <Route path="play" element={<Play />} />
-        <Route path="leaderboard" element={<Leaderboard />} />
+        <Route
+          path="login"
+          element={<Login username={username} setUsername={setUsername} />}
+        />
+        <Route path="play" element={<Play username={username} />} />
+        <Route
+          path="leaderboard"
+          element={<Leaderboard username={username} />}
+        />
         <Route path="*" element={<NotFound />} />
       </Routes>
 

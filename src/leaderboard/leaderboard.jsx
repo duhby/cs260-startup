@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from "react";
 
-export function Leaderboard() {
+export function Leaderboard({ username }) {
   const [scores, setScores] = useState([]);
   const defaultText = "No scores yet. Be the first!";
-  const [username, setUsername] = useState("");
 
   useEffect(() => {
     const res = localStorage.getItem("scores");
     if (res) {
       setScores(JSON.parse(res));
     }
-    setUsername(localStorage.getItem("username"));
   }, []);
 
   const scoreRows = [];
