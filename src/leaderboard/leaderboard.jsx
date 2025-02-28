@@ -3,13 +3,14 @@ import React, { useState, useEffect } from "react";
 export function Leaderboard() {
   const [scores, setScores] = useState([]);
   const defaultText = "No scores yet. Be the first!";
-  const loggedInUser = localStorage.getItem("username");
+  const [username, setUsername] = useState("");
 
   useEffect(() => {
     const res = localStorage.getItem("scores");
     if (res) {
       setScores(JSON.parse(res));
     }
+    setUsername(localStorage.getItem("username"));
   }, []);
 
   const scoreRows = [];
@@ -19,7 +20,7 @@ export function Leaderboard() {
         <tr
           key={i}
           className={
-            score.username === loggedInUser
+            score.username === username
               ? "bg-gray-800 font-bold"
               : "bg-gray-700"
           }

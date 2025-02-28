@@ -4,7 +4,13 @@ import { About } from "./about/about";
 import { Play } from "./play/play";
 import { Login } from "./login/login";
 import { Leaderboard } from "./leaderboard/leaderboard";
-import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import {
+  NavLink,
+  BrowserRouter,
+  Route,
+  Routes,
+  useLocation,
+} from "react-router-dom";
 import { HighlightedNavLink } from "./navlink";
 
 export default function App() {
@@ -20,9 +26,14 @@ function AppContent() {
     text: "Loading...",
     author: "n/a",
   });
+  const [username, setUsername] = React.useState("");
 
   // Needs to be used inside BrowserRouter
   const location = useLocation();
+
+  React.useEffect(() => {
+    setUsername(localStorage.getItem("username"));
+  }, []);
 
   React.useEffect(() => {
     let quotes = [
@@ -43,6 +54,11 @@ function AppContent() {
     const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
     setQuote(randomQuote);
   }, [location.pathname]);
+
+  const logout = () => {
+    localStorage.removeItem("username");
+    setUsername("");
+  };
 
   return (
     <div className="text-gray-100 bg-gray-900 h-screen flex flex-col justify-between">
@@ -67,10 +83,14 @@ function AppContent() {
           </menu>
         </nav>
         <div className="flex space-x-1">
-          <p>Player Name -</p>
-          <a href="#" className="underline hover:text-purple-400">
-            Logout
-          </a>
+          <p>{"username" + " -" ? username : ""}</p>
+          <NavLink
+            to={username ? "/" : "/login"}
+            className="underline"
+            onClick={logout}
+          >
+            {username ? "Logout" : "Login"}
+          </NavLink>
         </div>
       </header>
 

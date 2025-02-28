@@ -1,6 +1,19 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export function Login() {
+  const [username, setUsername] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const navigate = useNavigate();
+
+  React.useEffect(() => {
+    setUsername(localStorage.getItem("username"));
+  }, []);
+
+  if (username) {
+    navigate("/play");
+  }
+
   return (
     <main className="flex flex-col items-center text-center text-xl">
       <div className="max-w-2xl">
