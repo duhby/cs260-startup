@@ -71,7 +71,7 @@ apiRouter.post("/auth/logout", async (req, res) => {
 
 // request body: none
 // return body: scores
-apiRouter.get("/scores", authMiddleware, async (_req, res) => {
+apiRouter.get("/scores", async (_req, res) => {
   res.send(scores);
 });
 
@@ -122,7 +122,7 @@ function setAuthCookie(res, authToken) {
 async function createUser(username, password) {
   const passwordHash = await bcrypt.hash(password, 10);
   const user = {
-    username: username,
+    username: username.toLowerCase(),
     password: passwordHash,
     token: uuid.v4(),
   };
