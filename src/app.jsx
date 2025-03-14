@@ -32,10 +32,6 @@ function AppContent() {
   const location = useLocation();
 
   React.useEffect(() => {
-    setUsername(localStorage.getItem("username"));
-  }, []);
-
-  React.useEffect(() => {
     let quotes = [
       { text: "[You] can't spell pacifist without fist.", author: "Sarge" },
       {
@@ -56,8 +52,16 @@ function AppContent() {
   }, [location.pathname]);
 
   const logout = () => {
-    localStorage.removeItem("username");
-    setUsername("");
+    fetch("/api/auth/logout", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then((response) => {
+      if (response.status === 204) {
+        setUsername("");
+      }
+    });
   };
 
   return (
