@@ -51,7 +51,7 @@ apiRouter.post("/auth/login", async (req, res) => {
     return;
   }
   const user = await getUser("username", req.body.username);
-  if (!user || (await bcrypt.compare(req.body.password, user.password))) {
+  if (!user || !(await bcrypt.compare(req.body.password, user.password))) {
     res.status(401).send({ msg: "unauthorized" });
     return;
   }
