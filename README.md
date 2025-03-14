@@ -89,11 +89,11 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Node.js/Express HTTP service** - I did not complete this part of the deliverable.
-- [ ] **Static middleware for frontend** - I did not complete this part of the deliverable.
-- [ ] **Calls to third party endpoints** - I did not complete this part of the deliverable.
-- [ ] **Backend service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Frontend calls service endpoints** - I did not complete this part of the deliverable.
+- [x] **Node.js/Express HTTP service** - service/index.js
+- [x] **Static middleware for frontend** - The frontend is served from the public folder.
+- [x] **Calls to third party endpoints** - In src/app.jsx, there is a call to a random fact API that gets displayed in the footer.
+- [x] **Backend service endpoints** - Created endpoints for auth and scores.
+- [x] **Frontend calls service endpoints** - All localstorage calls are replaced with fetch calls to the service.
 
 ## 🚀 DB/Login deliverable
 
