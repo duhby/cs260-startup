@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 
 export function Play({ username }) {
   const defaultText = "Press up to start!";
-  // TODO: make different difficulties with varying durations
-  const keyDuration = 1000; // In miliseconds
+  // TODO: make it more difficult as time goes on
+  const keyDuration = 500; // In miliseconds
   const defaultPercentage = 100;
 
   const navigate = useNavigate();
