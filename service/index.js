@@ -5,7 +5,7 @@ const uuid = require("uuid");
 const app = express();
 
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
-const authCookieName = "Authentication";
+const authCookieName = "Authorization";
 
 let users = [];
 let scores = [];
@@ -93,10 +93,12 @@ apiRouter.post("/scores", authMiddleware, async (req, res) => {
       res.status(409).send({ msg: "not a high score" });
       return;
     }
-    existingScore = score;
+    existingScore.score = score.score;
+    existingScore.date = score.date;
   } else {
     scores.push(score);
   }
+  scores.sort((a, b) => b.score - a.score);
   res.status(204).end();
 });
 
