@@ -21,13 +21,12 @@ export function Play({ username }) {
     }
   }, [username, navigate]);
 
-  const endGame = (finalScore) => {
+  const endGame = async (finalScore) => {
     setGameText(defaultText);
     setGameColor("text-black");
     setScore(0);
     setTimeLeft(defaultPercentage);
 
-    // { username, score: finalScore, date: new Date() });
     fetch("/api/scores", {
       method: "POST",
       headers: {
