@@ -5,13 +5,12 @@ export function Leaderboard({ username }) {
   const defaultText = "No scores yet. Be the first!";
 
   useEffect(() => {
-    // TODO: only one entry per username
-    const res = localStorage.getItem("scores");
-    if (res) {
-      const parsedScores = JSON.parse(res);
-      parsedScores.sort((a, b) => b.score - a.score);
-      setScores(parsedScores);
-    }
+    fetch("/api/scores")
+      .then((response) => response.json())
+      // Scores are already sorted
+      .then((scores) => {
+        setScores(scores);
+      });
   }, []);
 
   const scoreRows = [];
