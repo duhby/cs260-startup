@@ -22,33 +22,16 @@ export default function App() {
 }
 
 function AppContent() {
-  const [quote, setQuote] = React.useState({
-    text: "Loading...",
-    author: "n/a",
-  });
+  const [fact, setFact] = React.useState("Loading...");
   const [username, setUsername] = React.useState("");
 
   // Needs to be used inside BrowserRouter
   const location = useLocation();
 
   React.useEffect(() => {
-    let quotes = [
-      { text: "[You] can't spell pacifist without fist.", author: "Sarge" },
-      {
-        text: "[With inheritance,] you wanted a banana, but what you got was a gorilla holding the banana, and the entire jungle.",
-        author: "Joe Armstrong",
-      },
-      {
-        text: "Rust isn't about memory safety, it's about a pervasive effort to ensure that you only need to reason locally about code's behavior.",
-        author: "Unknown",
-      },
-      {
-        text: "I have a first place ribbon in doing nothing... it's the same ribbon as last place.",
-        author: "Michael J. Caboose",
-      },
-    ];
-    const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
-    setQuote(randomQuote);
+    fetch("https://uselessfacts.jsph.pl/api/v2/facts/random?language=en")
+      .then((res) => (res = res.json()))
+      .then((res) => setFact(res.text));
   }, [location.pathname]);
 
   const logout = () => {
@@ -113,9 +96,8 @@ function AppContent() {
       </Routes>
 
       <footer className="bg-gray-800 flex items-center justify-between p-8 border-t-1">
-        <div id="random-quote">
-          <div>"{quote.text}"</div>
-          <div>- {quote.author}</div>
+        <div id="random-fact">
+          <div>{fact}</div>
         </div>
 
         <div>
