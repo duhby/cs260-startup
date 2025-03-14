@@ -17,6 +17,16 @@ app.use(express.static("public"));
 var apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
+const authMiddleware = async (req, res, next) => {
+  const user = await getUser("token", req.cookies[authCookieName]);
+  if (user) {
+    req.user = user;
+    next();
+  } else {
+    res.status(401).send({ msg: "unauthorized" });
+  }
+};
+
 // request body: username, password
 // return body: none
 apiRouter.post("/auth/create", async (req, res) => {
@@ -50,6 +60,42 @@ apiRouter.post("/auth/logout", async (req, res) => {
   res.status(204).end();
 });
 
+// request body: none
+// return body: scores
+apiRouter.get("/scores", authMiddleware, async (_req, res) => {
+  res.send(scores);
+});
+
+// request body: score
+// return body: none
+apiRouter.post("/scores", authMiddleware, async (req, res) => {
+  const score = {
+    username: req.user.username, // middleware sets the user
+    score: req.body.score,
+    date: new Date().toISOString(),
+  };
+  const existingScore = scores.find((s) => s.username === score.username);
+  if (existingScore) {
+    if (score.score <= existingScore.score) {
+      res.status(409).send({ msg: "not a high score" });
+      return;
+    }
+    existingScore = score;
+  } else {
+    scores.push(score);
+  }
+  res.status(204).end();
+});
+
+// Error handling
+app.use(function (err, _req, res, _next) {
+  res.status(500).send({ type: err.name, message: err.message });
+});
+
+app.use((_req, res) => {
+  res.sendFile("index.html", { root: "public" });
+});
+
 function setAuthCookie(res, authToken) {
   res.cookie(authCookieName, authToken, {
     secure: true,
@@ -58,9 +104,21 @@ function setAuthCookie(res, authToken) {
   });
 }
 
-// TODO:
-// function createUser
-// function getUser
+async function createUser(username, password) {
+  const passwordHash = await bcrypt.hash(password, 10);
+  const user = {
+    username: username,
+    password: passwordHash,
+    token: uuid.v4(),
+  };
+  users.push(user);
+  return user;
+}
+
+async function getUser(field, value) {
+  if (!value) return null;
+  return users.find((user) => user[field] === value);
+}
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
