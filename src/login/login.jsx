@@ -12,11 +12,38 @@ export function Login({ username, setUsername }) {
     }
   }, []);
 
-  const login = (e) => {
+  const loginOrCreate = (e) => {
     e.preventDefault();
-    localStorage.setItem("username", usernameRef.current.value);
-    setUsername(usernameRef.current.value);
-    navigate("/play");
+    fetch("/api/auth/create", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username: usernameRef.current.value, password }),
+    }).then((response) => {
+      if (response.status === 204) {
+        setUsername(usernameRef.current.value.toLowerCase());
+        navigate("/play");
+      } else {
+        fetch("/api/auth/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username: usernameRef.current.value,
+            password,
+          }),
+        }).then((response) => {
+          if (response.status === 204) {
+            setUsername(usernameRef.current.value.toLowerCase());
+            navigate("/play");
+          } else {
+            alert("Invalid username or password");
+          }
+        });
+      }
+    });
   };
 
   return (
@@ -26,7 +53,7 @@ export function Login({ username, setUsername }) {
           Log in or create an account to share your scores and appear on the
           leaderboard.
         </p>
-        <form className="flex flex-col items-center" onSubmit={login}>
+        <form className="flex flex-col items-center" onSubmit={loginOrCreate}>
           <input
             className="border-2 w-sm rounded-sm p-1 mb-2 focus:border-purple-400 focus:outline-none"
             type="text"
@@ -45,7 +72,7 @@ export function Login({ username, setUsername }) {
             className="bg-purple-800 w-sm rounded-sm p-2 hover:cursor-pointer hover:rounded-md hover:bg-gray-800 hover:text-purple-400"
             type="submit"
           >
-            Log in
+            Log in/Create account
           </button>
         </form>
       </div>
