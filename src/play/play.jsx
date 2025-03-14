@@ -27,10 +27,20 @@ export function Play({ username }) {
     setScore(0);
     setTimeLeft(defaultPercentage);
 
-    let scores = JSON.parse(localStorage.getItem("scores")) || [];
-    scores.push({ username, score: finalScore, date: new Date() });
-    localStorage.setItem("scores", JSON.stringify(scores));
-    alert(`Game over! Your score: ${finalScore}`);
+    // { username, score: finalScore, date: new Date() });
+    fetch("/api/scores", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ score: finalScore }),
+    }).then((response) => {
+      if (response.status === 204) {
+        alert(`New high score! ${finalScore}`);
+      } else if (response.status === 409) {
+        alert(`Game over! Your score: ${finalScore}`);
+      }
+    });
   };
 
   const nextFrame = () => {
