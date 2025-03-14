@@ -30,6 +30,10 @@ const authMiddleware = async (req, res, next) => {
 // request body: username, password
 // return body: none
 apiRouter.post("/auth/create", async (req, res) => {
+  if (!req.body.username || !req.body.password) {
+    res.status(400).send({ msg: "missing username or password" });
+    return;
+  }
   if (await getUser("username", req.body.username)) {
     res.status(409).send({ msg: "username taken" });
     return;
@@ -42,9 +46,14 @@ apiRouter.post("/auth/create", async (req, res) => {
 // request body: username, password
 // return body: none
 apiRouter.post("/auth/login", async (req, res) => {
+  if (!req.body.username || !req.body.password) {
+    res.status(400).send({ msg: "missing username or password" });
+    return;
+  }
   const user = await getUser("username", req.body.username);
   if (!user || (await bcrypt.compare(req.body.password, user.password))) {
     res.status(401).send({ msg: "unauthorized" });
+    return;
   }
   user.token = uuid.v4();
   setAuthCookie(res, user.token);
@@ -69,6 +78,10 @@ apiRouter.get("/scores", authMiddleware, async (_req, res) => {
 // request body: score
 // return body: none
 apiRouter.post("/scores", authMiddleware, async (req, res) => {
+  if (!req.body.score) {
+    res.status(400).send({ msg: "missing score" });
+    return;
+  }
   const score = {
     username: req.user.username, // middleware sets the user
     score: req.body.score,
@@ -88,7 +101,7 @@ apiRouter.post("/scores", authMiddleware, async (req, res) => {
 });
 
 // Error handling
-app.use(function (err, _req, res, _next) {
+app.use(function (err, req, res, next) {
   res.status(500).send({ type: err.name, message: err.message });
 });
 
