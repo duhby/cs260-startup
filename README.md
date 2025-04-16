@@ -99,11 +99,11 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **User registration** - I did not complete this part of the deliverable.
-- [ ] **User login and logout** - I did not complete this part of the deliverable.
-- [ ] **Stores data in MongoDB** - I did not complete this part of the deliverable.
-- [ ] **Stores credentials in MongoDB** - I did not complete this part of the deliverable.
-- [ ] **Restricts functionality based on authentication** - I did not complete this part of the deliverable.
+- [x] **User registration** - In index.js, users are added to mongodb.
+- [x] **User login and logout** - In index.js, when users log in, their new token is stored in mongodb.
+- [x] **Stores data in MongoDB** - All users and scores are stored in mongodb instead of in-memory arrays.
+- [x] **Stores credentials in MongoDB** - The user table in mongodb stores the username and hashed password.
+- [x] **Restricts functionality based on authentication** - When the user is not authenticated, they cannot submit scores or view the play page.
 
 ## 🚀 WebSocket deliverable
 
