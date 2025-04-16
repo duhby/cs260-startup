@@ -62,8 +62,12 @@ apiRouter.post("/auth/login", async (req, res) => {
     res.status(401).send({ msg: "unauthorized" });
     return;
   }
-  user.token = uuid.v4();
-  setAuthCookie(res, user.token);
+  let token = uuid.v4();
+  await usersCollection.updateOne(
+    { username: user.username },
+    { $set: { token: token } }
+  );
+  setAuthCookie(res, token);
   res.status(204).end();
 });
 
