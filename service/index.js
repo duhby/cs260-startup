@@ -4,11 +4,18 @@ const express = require("express");
 const uuid = require("uuid");
 const app = express();
 
+const { MongoClient } = require("mongodb");
+const config = require("./dbConfig.json");
+
+const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
+
+const client = new MongoClient(url);
+const db = client.db("startup");
+const usersCollection = db.collection("users");
+const scoresCollection = db.collection("scores");
+
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 const authCookieName = "Authorization";
-
-let users = [];
-let scores = [];
 
 app.use(express.json());
 app.use(cookieParser());
@@ -72,6 +79,7 @@ apiRouter.post("/auth/logout", async (req, res) => {
 // request body: none
 // return body: scores
 apiRouter.get("/scores", async (_req, res) => {
+  const scores = await scoresCollection.find().toArray();
   res.send(scores);
 });
 
@@ -87,7 +95,9 @@ apiRouter.post("/scores", authMiddleware, async (req, res) => {
     score: req.body.score,
     date: new Date().toISOString(),
   };
-  const existingScore = scores.find((s) => s.username === score.username);
+  const existingScore = await scoresCollection.findOne({
+    username: score.username,
+  });
   if (existingScore) {
     if (score.score <= existingScore.score) {
       res.status(409).send({ msg: "not a high score" });
@@ -97,6 +107,7 @@ apiRouter.post("/scores", authMiddleware, async (req, res) => {
     existingScore.date = score.date;
   } else {
     scores.push(score);
+    await scoresCollection.insertOne(score);
   }
   scores.sort((a, b) => b.score - a.score);
   res.status(204).end();
@@ -126,12 +137,13 @@ async function createUser(username, password) {
     password: passwordHash,
     token: uuid.v4(),
   };
-  users.push(user);
+  await usersCollection.insertOne(user);
   return user;
 }
 
 async function getUser(field, value) {
   if (!value) return null;
+  const users = await usersCollection.find().toArray();
   return users.find((user) => user[field] === value);
 }
 
