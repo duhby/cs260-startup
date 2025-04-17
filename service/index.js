@@ -3,6 +3,7 @@ const bcrypt = require("bcryptjs");
 const express = require("express");
 const uuid = require("uuid");
 const app = express();
+const { websocket } = require("./websocket.js");
 
 const { MongoClient } = require("mongodb");
 const config = require("./dbConfig.json");
@@ -151,6 +152,8 @@ async function getUser(field, value) {
   return users.find((user) => user[field] === value);
 }
 
-app.listen(port, () => {
+const httpServer = app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
+
+websocket(httpServer);
