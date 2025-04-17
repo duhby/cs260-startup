@@ -18,7 +18,7 @@ export function Leaderboard({ username }) {
     );
     socket.onmessage = async (msg) => {
       try {
-        const scores = JSON.parse(await msg.data.text());
+        const scores = JSON.parse(msg.data);
         setScores(scores);
       } catch {}
     };

@@ -115,7 +115,11 @@ apiRouter.post("/scores", authMiddleware, async (req, res) => {
     await scoresCollection.insertOne(score);
   }
   res.status(204).end();
-  const scores = await scoresCollection.find().sort({ score: -1 }).toArray();
+  let scores = await scoresCollection.find().sort({ score: -1 }).toArray();
+  scores = scores.map((score) => {
+    delete score._id;
+    return score;
+  });
   sendMessage(socketServer, JSON.stringify(scores));
 });
 
@@ -157,4 +161,4 @@ const httpServer = app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
 
-websocket(httpServer);
+const socketServer = websocket(httpServer);

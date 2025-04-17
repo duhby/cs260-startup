@@ -22,7 +22,9 @@ function websocket(httpServer) {
 
   setInterval(() => {
     socketServer.clients.forEach(function each(client) {
-      if (client.isAlive === false) return client.terminate();
+      if (client.isAlive === false) {
+        return client.terminate();
+      }
 
       client.isAlive = false;
       client.ping();
