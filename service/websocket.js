@@ -1,4 +1,5 @@
 const { WebSocketServer } = require("ws");
+const WebSocket = require("ws");
 
 function websocket(httpServer) {
   const socketServer = new WebSocketServer({ server: httpServer });
@@ -27,6 +28,16 @@ function websocket(httpServer) {
       client.ping();
     });
   }, 10000);
+
+  return socketServer;
 }
 
-module.exports = { websocket };
+function sendMessage(socketServer, message) {
+  socketServer.clients.forEach((client) => {
+    if (client.readyState === WebSocket.OPEN) {
+      client.send(message);
+    }
+  });
+}
+
+module.exports = { websocket, sendMessage };
