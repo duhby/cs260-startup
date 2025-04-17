@@ -109,8 +109,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Backend listens for WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **Frontend makes WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **Data sent over WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **WebSocket data displayed** - I did not complete this part of the deliverable.
-- [ ] **Application is fully functional** - I did not complete this part of the deliverable.
+- [x] **Backend listens for WebSocket connection** - service/websocket.js listens for WebSocket connections.
+- [x] **Frontend makes WebSocket connection** - src/leaderboard/leaderboard.jsx makes a WebSocket connection.
+- [x] **Data sent over WebSocket connection** - service/index.js on POST /scores sends the updated leaderboard to all WebSocket clients.
+- [x] **WebSocket data displayed** - The leaderboard page gets the updated leaderboard from the WebSocket connection when a new score is submitted.
+- [x] **Application is fully functional** - Endpoints may be slow to respond (logging in, submitting a score), but the website is fully functional.
