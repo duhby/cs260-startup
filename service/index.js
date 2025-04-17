@@ -3,7 +3,7 @@ const bcrypt = require("bcryptjs");
 const express = require("express");
 const uuid = require("uuid");
 const app = express();
-const { websocket } = require("./websocket.js");
+const { websocket, sendMessage } = require("./websocket.js");
 
 const { MongoClient } = require("mongodb");
 const config = require("./dbConfig.json");
@@ -84,7 +84,7 @@ apiRouter.post("/auth/logout", async (req, res) => {
 // request body: none
 // return body: scores
 apiRouter.get("/scores", async (_req, res) => {
-  const scores = await scoresCollection.find().toArray();
+  const scores = await scoresCollection.find().sort({ score: -1 }).toArray();
   res.send(scores);
 });
 
@@ -110,12 +110,13 @@ apiRouter.post("/scores", authMiddleware, async (req, res) => {
     }
     existingScore.score = score.score;
     existingScore.date = score.date;
+    await scoresCollection.replaceOne({ username: score.username }, score);
   } else {
-    scores.push(score);
     await scoresCollection.insertOne(score);
   }
-  scores.sort((a, b) => b.score - a.score);
   res.status(204).end();
+  const scores = await scoresCollection.find().sort({ score: -1 }).toArray();
+  sendMessage(socketServer, JSON.stringify(scores));
 });
 
 // Error handling
